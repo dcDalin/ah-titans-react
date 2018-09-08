@@ -1,6 +1,6 @@
 # Authors' Haven FrontEnd
 
-[![CircleCI](https://circleci.com/gh/andela/ah-titans-frontend.svg?style=svg)](https://circleci.com/gh/andela/ah-titans-frontend) [![Maintainability](https://api.codeclimate.com/v1/badges/ebbabfe8fcffc2b149ed/maintainability)](https://codeclimate.com/github/andela/ah-titans-frontend/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/ebbabfe8fcffc2b149ed/test_coverage)](https://codeclimate.com/github/andela/ah-titans-frontend/test_coverage)
+[![CircleCI](https://circleci.com/gh/dcDalin/ah-titans-react.svg?style=svg)](https://circleci.com/gh/dcDalin/ah-titans-react) [![Maintainability](https://api.codeclimate.com/v1/badges/3acc496176069c256f04/maintainability)](https://codeclimate.com/github/dcDalin/ah-titans-react/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/3acc496176069c256f04/test_coverage)](https://codeclimate.com/github/dcDalin/ah-titans-react/test_coverage)
 
 ## Vision
 
