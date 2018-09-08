@@ -1,19 +1,24 @@
 module.exports = {
-  extends: 'airbnb',
+  parser: 'babel-eslint',
+  plugins: ['react', 'prettier', 'jest'],
+  env: {
+      browser: true,
+  },
+  extends: [
+      'airbnb',
+      'plugin:prettier/recommended',
+      'prettier/react',
+      'prettier/standard',
+      'plugin:jest/recommended',
+  ],
   rules: {
-    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
-    // enable additional rules
-    indent: ['error', 2],
-    'linebreak-style': ['error', 'unix'],
-    quotes: ['error', 'single'],
-    semi: ['error', 'always'],
+      indent: 0,
 
-    // override default options for rules from base configurations
-    'comma-dangle': ['error', 'always'],
-    'no-cond-assign': ['error', 'always'],
+      'prettier/prettier': 'error',
 
-    // disable rules from base configurations
-    'no-console': 'off',
+      'react/jsx-indent': 0,
+      'react/jsx-indent-props': 0,
+      'react/jsx-filename-extension': 0,
   },
   globals: {
     fetch: false,
@@ -21,9 +26,5 @@ module.exports = {
     describe: false,
     it: false,
     expect: false,
-  },
-  "globals": {
-    "fetch": true,
-    "localStorage": true
   },
 };
