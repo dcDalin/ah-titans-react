@@ -1,0 +1,4 @@
+node_modules
+.circleci
+coverage
+public
