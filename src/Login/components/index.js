@@ -1,4 +1,4 @@
-import React, { Fragment, } from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -14,7 +14,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 const styles = theme => ({
   layout: {
     width: 'auto',
-    display: 'block', // Fix IE11 issue.
+    display: 'block',
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
     [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
@@ -35,7 +35,7 @@ const styles = theme => ({
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE11 issue.
+    width: '100%',
     marginTop: theme.spacing.unit,
   },
   submit: {
@@ -44,7 +44,7 @@ const styles = theme => ({
 });
 
 function LoginForm(props) {
-  const { classes, } = props;
+  const { classes } = props;
 
   return (
     <Fragment>
@@ -76,8 +76,11 @@ function LoginForm(props) {
               color="primary"
               className={classes.submit}
             >
-              Sign in
+              Login
             </Button>
+            <Typography variant="caption" gutterBottom align="center" className={classes.submit}>
+              Forgot your password?
+            </Typography>
           </form>
         </Paper>
       </main>

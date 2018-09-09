@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, } from '@material-ui/core/styles';
-import { Link, } from 'react-router-dom';
+import { withStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -29,16 +29,32 @@ const styles = {
 };
 
 function Header(props) {
-  const { classes, } = props;
+  const { classes } = props;
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar className={classes.appBar}>
-          <Typography variant="title" color="inherit" component={Link} to="/" className={classes.grow}>
+          <Typography
+            variant="title"
+            color="inherit"
+            component={Link}
+            to="/"
+            className={classes.grow}
+          >
             Home
           </Typography>
-          <Button color="inherit" variant="outlined" className={classes.button} component={Link} to="/login">Login</Button>
-          <Button color="inherit" variant="outlined" component={Link} to="/login">Signup</Button>
+          <Button
+            color="inherit"
+            variant="outlined"
+            className={classes.button}
+            component={Link}
+            to="/login"
+          >
+            Login
+          </Button>
+          <Button color="inherit" variant="outlined" component={Link} to="/login">
+            Signup
+          </Button>
         </Toolbar>
       </AppBar>
     </div>
