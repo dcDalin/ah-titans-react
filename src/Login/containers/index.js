@@ -1,66 +1,60 @@
 import React from 'react';
-import { connect, } from 'react-redux';
 import PropTypes from 'prop-types';
-import loginUser from '../../actions/loginActions';
+import { Link } from 'react-router-dom';
+import Validator from 'validator';
+import { Col, Card, Row, Input, Button } from 'react-materialize';
 import LoginForm from '../components';
 
-class Login extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
+class LoginContainer extends React.Component {
+  state = {
+    data: {
       email: '',
       password: '',
-    };
+    },
+    errors: {},
+  };
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+  onChange = e => this.setState({ data: { ...this.state.data, [e.target.name]: e.target.value } });
 
-  handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value, });
-  }
-
-  handleSubmit(e) {
+  onSubmit = e => {
     e.preventDefault();
+    const errors = this.validate(this.state.data);
+    this.setState({ errors });
+    if (Object.keys(errors).length === 0) {
+      this.props.submit(this.state.data);
+    }
+  };
 
-    const { email, password, } = this.state;
+  onValidate = () => {
+    const errors = this.validate(this.state.data);
+    this.setState({ errors });
+  };
 
-    const user = {
-      user: {
-        email,
-        password,
-      },
-    };
-
-    this.props.loginUser(user, this.props.history);
-  }
+  validate = data => {
+    const errors = {};
+    if (!data.email) {
+      errors.email = 'Email is required';
+    } else if (!Validator.isEmail(data.email)) {
+      errors.email = 'Email is invalid';
+    }
+    return errors;
+  };
 
   render() {
-    const { login, } = this.props;
-    const { errors, isFetching, } = login;
     return (
-      <LoginForm
-        onChange={this.handleChange}
-        onClick={this.handleSubmit}
-        errors={errors}
-        isFetching={isFetching}
+      <ResetPasswordForm
+        onChange={this.onChange}
+        onSubmit={this.onSubmit}
+        onValidate={this.onValidate}
+        data={this.state.data.email}
+        errors={this.state.errors}
       />
     );
   }
 }
 
-Login.propTypes = {
-  loginUser: PropTypes.func.isRequired,
-  login: PropTypes.shape({
-    user: PropTypes.object,
-    errors: PropTypes.object,
-    isFetching: PropTypes.bool,
-  }).isRequired,
+LoginContainer.propTypes = {
+  submit: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({ login, }) => ({
-  login,
-});
-
-export default connect(mapStateToProps, { loginUser, })(Login);
+export default LoginContainer;
