@@ -7,7 +7,7 @@ module.exports = {
     app: './src/index.js',
   },
   plugins: [
-    new CleanWebpackPlugin(['dist', ]),
+    new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
       title: 'Production',
       template: './public/index.html',
@@ -19,10 +19,9 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
         loader: 'babel-loader',
-        options: { presets: ['env', ], },
       },
       {
-        test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, ],
+        test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
         loader: require.resolve('url-loader'),
         options: {
           limit: 10000,
@@ -31,11 +30,11 @@ module.exports = {
       },
       {
         test: /\.(scss|css)$/,
-        use: ['style-loader', 'css-loader', 'sass-loader', ],
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
     ],
   },
-  resolve: { extensions: ['*', '.js', '.jsx', '.gif', ], },
+  resolve: { extensions: ['*', '.js', '.jsx', '.gif'] },
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
