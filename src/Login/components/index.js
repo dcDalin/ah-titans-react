@@ -10,6 +10,7 @@ import LockIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
+import InlineError from './inlineError';
 
 const styles = theme => ({
   layout: {
@@ -44,7 +45,7 @@ const styles = theme => ({
 });
 
 function LoginForm(props) {
-  const { classes } = props;
+  const { classes, onSubmit, errors, data, onChange, onValidate } = props;
 
   return (
     <Fragment>
@@ -55,10 +56,19 @@ function LoginForm(props) {
             <LockIcon />
           </Avatar>
           <Typography variant="headline">Login</Typography>
-          <form className={classes.form}>
+          <form className={classes.form} onSubmit={onSubmit} noValidate>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="email">Email Address</InputLabel>
-              <Input id="email" name="email" autoComplete="email" autoFocus />
+              <Input
+                id="email"
+                name="email"
+                autoComplete="email"
+                autoFocus
+                value={data.email}
+                onChange={onChange}
+                onKeyUp={onValidate}
+              />
+              {errors.email && <InlineError text={errors.email} />}
             </FormControl>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="password">Password</InputLabel>
@@ -67,7 +77,11 @@ function LoginForm(props) {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={data.password}
+                onChange={onChange}
+                onKeyUp={onValidate}
               />
+              {errors.password && <InlineError text={errors.password} />}
             </FormControl>
             <Button
               type="submit"
@@ -89,7 +103,18 @@ function LoginForm(props) {
 }
 
 LoginForm.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.shape().isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onValidate: PropTypes.func.isRequired,
+  data: PropTypes.shape({
+    email: PropTypes.string,
+    password: PropTypes.string,
+  }).isRequired,
+  errors: PropTypes.shape({
+    email: PropTypes.string,
+    password: PropTypes.string,
+  }).isRequired,
 };
 
 export default withStyles(styles)(LoginForm);
